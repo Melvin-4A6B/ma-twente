@@ -1,5 +1,6 @@
-<?php 
-	include 'core/dbc.php';
+<?php
+  session_start();
+	include ("core/dbc.php");
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -23,7 +24,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">MA-Twente</a>
+      <a class="navbar-brand" href="">MA-Twente</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -57,6 +58,7 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+  <?php echo($_SESSION["gebruiker"]); ?>
 	<script src="js/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 </body>

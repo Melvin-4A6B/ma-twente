@@ -1,6 +1,6 @@
 <?php 
-  include 'core/loginModal.php';
-  include 'core/dbc.php'; 
+  include("core/loginModal.php");
+  include("core/dbc.php");
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -32,6 +32,9 @@
       </div>
     </div>
   </nav>
+  <div>
+    <span></span>
+  </div>
   <script src="js/jquery-3.1.1.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
 </body>

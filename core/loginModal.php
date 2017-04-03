@@ -1,3 +1,4 @@
+<?php include("login.php"); ?>
 <div class="modal fade loginModal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="row">
@@ -9,18 +10,16 @@
             <h4 class="modal-title" id="myModalLabel">Login</h4>
           </div>
           <div class="well">
-            <form id="loginForm" method="POST" action="core/login.php">
+            <form id="loginForm" method="POST">
               <div class="form-group">
                 <label for="gebruiker" class="control-label">Gebruiker</label>
                 <input type="text" class="form-control" id="gebruiker" name="gebruiker" title="Vul uw gebruikersnaam in">
-                <span class="help-block"></span>
               </div>
               <div class="form-group">
                 <label for="wachtwoord" class="control-label">Wachtwoord</label>
                 <input type="password" class="form-control" id="wachtwoord" name="wachtwoord" title="Vul uw wachtwoord in">
-                <span class="help-block"></span>
               </div>
-              <div id="loginErrorMsg" class="alert alert-error hide">Gebruikersnaam en/of wachtwoord verkeerd</div>
+              <div id="loginErrorMsg" class="alert alert-error hide"><?php errorCheck(); ?></div>
               <button type="submit" name="submit" class="btn btn-primary btn-block">Login</button>
             </form>
           </div>
