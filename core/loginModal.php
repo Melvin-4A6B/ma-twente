@@ -1,22 +1,32 @@
 <div class="modal fade loginModal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Login</h4>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <form>
-            <input type="text" name="username" class="form-control" placeholder="Username"><br>
-            <input type="password" name="password" class="form-control" placeholder="Password">
-          </form>
+    <div class="row">
+      <div class="col-xs-3"></div>
+      <div class="col-xs-6">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Sluit</span></button>
+            <h4 class="modal-title" id="myModalLabel">Login</h4>
+          </div>
+          <div class="well">
+            <form id="loginForm" method="POST" action="core/login.php">
+              <div class="form-group">
+                <label for="gebruiker" class="control-label">Gebruiker</label>
+                <input type="text" class="form-control" id="gebruiker" name="gebruiker" title="Vul uw gebruikersnaam in">
+                <span class="help-block"></span>
+              </div>
+              <div class="form-group">
+                <label for="wachtwoord" class="control-label">Wachtwoord</label>
+                <input type="password" class="form-control" id="wachtwoord" name="wachtwoord" title="Vul uw wachtwoord in">
+                <span class="help-block"></span>
+              </div>
+              <div id="loginErrorMsg" class="alert alert-error hide">Gebruikersnaam en/of wachtwoord verkeerd</div>
+              <button type="submit" name="submit" class="btn btn-primary btn-block">Login</button>
+            </form>
+          </div>
         </div>
+        <div class="col-xs-3"></div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Login</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    </div>
+  </div>
+</div>
