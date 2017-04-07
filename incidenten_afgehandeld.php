@@ -1,20 +1,21 @@
 <?php
   session_start();
-	include ("core/dbc.php");
+  include ("core/dbc.php");
 ?>
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>MA-Twente</title>
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/font-awesome.min.css" rel="stylesheet">
-	<link href="css/custom.css" rel="stylesheet">
+  <title>MA-Twente</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/custom.css" rel="stylesheet">
 </head>
 <body>
   <?php
+
   $gebruiker = $_SESSION["gebruiker"];
   $sql = "SELECT * FROM gebruikers WHERE gebruikersnaam = '$gebruiker'";
   $result = $dbc->query($sql);
@@ -81,8 +82,50 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-  <?php //echo($_SESSION["gebruiker"]); ?>
-	<script src="js/jquery-3.1.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+  <div class="container">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Afgehandelde Incidenten</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Afhandeltijd</th>
+              <th>Verantwoordelijke</th>
+              <th>Oorzaak</th>
+              <th>Oplossing</th>
+              <th>Terugkoppeling</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>John</td>
+              <td>Doe</td>
+              <td>john@example.com</td>
+              <td>Details</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Mary</td>
+              <td>Moe</td>
+              <td>mary@example.com</td>
+              <td>Details</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>July</td>
+              <td>Dooley</td>
+              <td>july@example.com</td>
+              <td>Details</td>
+              <td>1</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <script src="js/jquery-3.1.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -15,6 +15,7 @@
 </head>
 <body>
   <?php
+
   $gebruiker = $_SESSION["gebruiker"];
   $sql = "SELECT * FROM gebruikers WHERE gebruikersnaam = '$gebruiker'";
   $result = $dbc->query($sql);
@@ -81,7 +82,34 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-  <?php //echo($_SESSION["gebruiker"]); ?>
+
+  <div class="container">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Incident Melden</h3>
+      </div>
+      <div class="panel-body">
+        <form action="">
+          <label>Datum probleem</label>
+          <input type="date" class="form-control" id="datepicker">
+          <label>Omschrijving</label>
+          <input type="text" class="form-control">
+          <label>Details probleem</label>
+          <textarea class="form-control" cols="30" rows="10" style="resize: none;"></textarea>
+          <label>Betrekking op aantal gebruikers</label>
+          <input type="number" class="form-control" min="1" max="99">
+          <br>
+          <input type="submit" class="form-control btn btn-primary" value="Incident Melden">
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    $(function(){
+      $("#datepicker").datepicker();
+    });
+  </script>
 	<script src="js/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 </body>

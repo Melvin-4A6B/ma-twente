@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 30 mrt 2017 om 15:20
+-- Gegenereerd op: 07 apr 2017 om 10:40
 -- Serverversie: 10.1.21-MariaDB
 -- PHP-versie: 5.6.30
 
@@ -65,6 +65,7 @@ CREATE TABLE `gebruikers` (
   `geslacht` int(11) NOT NULL,
   `voorletter` varchar(255) NOT NULL,
   `achternaam` varchar(255) NOT NULL,
+  `gebruikersnaam` varchar(255) NOT NULL,
   `afdeling` varchar(255) NOT NULL,
   `intern_telefoon_nummer` varchar(255) NOT NULL,
   `wachtwoord` varchar(255) NOT NULL,
@@ -75,8 +76,9 @@ CREATE TABLE `gebruikers` (
 -- Gegevens worden geëxporteerd voor tabel `gebruikers`
 --
 
-INSERT INTO `gebruikers` (`id`, `geslacht`, `voorletter`, `achternaam`, `afdeling`, `intern_telefoon_nummer`, `wachtwoord`, `privilege`) VALUES
-(1, 1, 'V', 'Campbell', 'CAD', '254', 'vccad254', 2);
+INSERT INTO `gebruikers` (`id`, `geslacht`, `voorletter`, `achternaam`, `gebruikersnaam`, `afdeling`, `intern_telefoon_nummer`, `wachtwoord`, `privilege`) VALUES
+(1, 2, 'v', 'campbell', 'v.campbell', 'cad', '254', '858e7104f2c493098c562ef79e0c1fce954b8453', 2),
+(2, 2, 's', 'geerman', 's.geerman', 'cad', '253', 'bb8aae9d39af4bf8f7332492912fe1293efd3040', 1);
 
 -- --------------------------------------------------------
 
@@ -140,7 +142,7 @@ ALTER TABLE `configuratie`
 -- AUTO_INCREMENT voor een tabel `gebruikers`
 --
 ALTER TABLE `gebruikers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT voor een tabel `open_incidenten`
 --

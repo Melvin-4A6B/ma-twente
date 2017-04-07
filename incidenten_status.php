@@ -15,6 +15,7 @@
 </head>
 <body>
   <?php
+
   $gebruiker = $_SESSION["gebruiker"];
   $sql = "SELECT * FROM gebruikers WHERE gebruikersnaam = '$gebruiker'";
   $result = $dbc->query($sql);
@@ -81,7 +82,49 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-  <?php //echo($_SESSION["gebruiker"]); ?>
+  <div class="container">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Status</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Datum</th>
+              <th>Omschrijving</th>
+              <th>Details</th>
+              <th>Aantal Gebruikers</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>John</td>
+              <td>Doe</td>
+              <td>john@example.com</td>
+              <td>2</td>
+              <td>Afgehandeld</td>
+            </tr>
+            <tr>
+              <td>Mary</td>
+              <td>Moe</td>
+              <td>mary@example.com</td>
+              <td>5</td>
+              <td>Afgehandeld</td>
+            </tr>
+            <tr>
+              <td>July</td>
+              <td>Dooley</td>
+              <td>july@example.com</td>
+              <td>7</td>
+              <td>Open</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 	<script src="js/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 </body>

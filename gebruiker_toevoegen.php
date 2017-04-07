@@ -15,6 +15,7 @@
 </head>
 <body>
   <?php
+
   $gebruiker = $_SESSION["gebruiker"];
   $sql = "SELECT * FROM gebruikers WHERE gebruikersnaam = '$gebruiker'";
   $result = $dbc->query($sql);
@@ -81,8 +82,83 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-  <?php //echo($_SESSION["gebruiker"]); ?>
+  <div class="container">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Gebruiker Toevoegen</h3>
+      </div>
+      <div class="panel-body">
+        <form method="post">
+          <label>Geslacht</label>
+          <select class="form-control" name="geslacht">
+            <option value=""></option>
+            <option value="1">Vrouw</option>
+            <option value="2">Man</option>
+          </select>
+          <label>Voorletter</label>
+          <input type="text" class="form-control" name="voorletter">
+          <label>Achternaam</label>
+          <input type="text" class="form-control" name="achternaam">
+          <label>Afdeling</label>
+          <select class="form-control" name="afdeling">
+            <option value=""></option>
+            <option value="cad">CAD</option>
+            <option value="directie">Directie</option>
+            <option value="engineering">Engineering</option>
+            <option value="financiele_administratie">Financiele Administratie</option>
+            <option value="hrm">HRM</option>
+            <option value="ict">ICT</option>
+            <option value="onderzoek">Onderzoek</option>
+            <option value="planning">Planning</option>
+            <option value="project_planning">Project Planning</option>
+            <option value="rapportage">Rapportage</option>
+            <option value="secretariaat">Secretariaat</option>
+            <option value="verkoop_en_marketing">Verkoop en Marketing</option>
+          </select>
+          <label>Intern telefoonnummer</label>
+          <input type="text" class="form-control" name="telefoon">
+          <label>Wachtwoord</label>
+          <input type="password" class="form-control" name="wachtwoord">
+          <label>Privilege</label>
+          <select class="form-control" name="privilege">
+            <option value="1">Gebruiker</option>
+            <option value="2">Beheerder</option>
+          </select>
+          <br>
+          <input type="submit" class="form-control btn btn-primary" name="submit" value="Gebruiker Toevoegen">
+        </form>
+      </div>
+    </div>
+  </div>
 	<script src="js/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
+<?php
+  if(isset($_POST["submit"])) {
+    if(empty($_POST["geslacht"]) | 
+       empty($_POST["voorletter"]) | 
+       empty($_POST["achternaam"]) | 
+       empty($_POST["afdeling"]) | 
+       empty($_POST["telefoon"]) | 
+       empty($_POST["wachtwoord"]) | 
+       empty($_POST["privilege"])) {
+      echo("Vul alle velden in");
+      exit();
+    } else {
+      $geslacht = $_POST["geslacht"];
+      $voorletter = strtolower($_POST["voorletter"]);
+      $achternaam = strtolower($_POST["achternaam"]);
+      $gebruikersnaam = $voorletter . "." . $achternaam;
+      $afdeling = $_POST["afdeling"];
+      $telefoon = $_POST["telefoon"];
+      $wachtwoord = sha1($_POST["wachtwoord"]);
+      $privilege = $_POST["privilege"];
+      $sql = "INSERT INTO gebruikers
+              (geslacht, voorletter, achternaam, gebruikersnaam, afdeling, intern_telefoon_nummer, wachtwoord, privilege) 
+              VALUES('$geslacht', '$voorletter', '$achternaam', '$gebruikersnaam', '$afdeling', '$telefoon', '$wachtwoord', '$privilege')";
+      $result = $dbc->query($sql);
+      echo("Gebruiker met succes in de database toegevoegd");      
+    }
+  }
+?>

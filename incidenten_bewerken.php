@@ -15,6 +15,7 @@
 </head>
 <body>
   <?php
+
   $gebruiker = $_SESSION["gebruiker"];
   $sql = "SELECT * FROM gebruikers WHERE gebruikersnaam = '$gebruiker'";
   $result = $dbc->query($sql);
@@ -81,7 +82,32 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-  <?php //echo($_SESSION["gebruiker"]); ?>
+  <div class="container">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Incidenten Bewerken</h3>
+      </div>
+      <div class="panel-body">
+        <form>
+          <label>Afhandeltijd</label>
+          <input type="text" class="form-control">
+          <label>Verantwoordelijke</label>
+          <select class="form-control">
+            <option value="">Beheerder 1</option>
+            <option value="">Beheerder 2</option>
+          </select>
+          <label>Oorzaak</label>
+          <textarea class="form-control" style="resize: none;"></textarea>
+          <label>Oplossing</label>
+          <textarea class="form-control" style="resize: none;"></textarea>
+          <label>Terugkoppeling</label>
+          <textarea class="form-control" style="resize: none;"></textarea>
+          <br>
+          <input type="submit" class="form-control btn btn-primary" value="Bewerk Incident">
+        </form>
+      </div>
+    </div>
+  </div>
 	<script src="js/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 </body>

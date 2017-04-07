@@ -1,20 +1,6 @@
 <?php
-  session_start();
-	include ("core/dbc.php");
-?>
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>MA-Twente</title>
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/font-awesome.min.css" rel="stylesheet">
-	<link href="css/custom.css" rel="stylesheet">
-</head>
-<body>
-  <?php
+  include ("core/dbc.php");
+
   $gebruiker = $_SESSION["gebruiker"];
   $sql = "SELECT * FROM gebruikers WHERE gebruikersnaam = '$gebruiker'";
   $result = $dbc->query($sql);
@@ -45,22 +31,22 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gebruikers <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="gebruiker_toevoegen.php">Gebruikers toevoegen</a></li>
-            <li><a href="gebruiker_bewerken.php">Gebruikers bewerken</a></li>
+            <li><a href="gebruikers/toevoegen.php">Gebruikers toevoegen</a></li>
+            <li><a href="gebruikers/bewerken.php">Gebruikers bewerken</a></li>
           </ul>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Configuratie <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="configuratie_toevoegen.php">Configuratie toevoegen</a></li>
-            <li><a href="configuratie_bewerken.php">Configuratie bewerken</a></li>
+            <li><a href="configuratie/toevoegen.php">Configuratie toevoegen</a></li>
+            <li><a href="configuratie/bewerken.php">Configuratie bewerken</a></li>
           </ul>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Incidenten <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="incidenten_afgehandeld.php">Afgehandelde incidenten</a></li>
-            <li><a href="incidenten_open.php">Open incidenten</a></li>
+            <li><a href="incidenten/afgehandeld.php">Afgehandelde incidenten</a></li>
+            <li><a href="incidenten/open.php">Open incidenten</a></li>
           </ul>
         </li>
       </ul>
@@ -69,8 +55,8 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Incidenten <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="incidenten_melden.php">Incident melden</a></li>
-            <li><a href="incidenten_status.php">Status</a></li>
+            <li><a href="incidenten/melden.php">Incident melden</a></li>
+            <li><a href="incidenten/status.php">Status</a></li>
           </ul>
         </li>
       </ul>
@@ -81,8 +67,3 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-  <?php //echo($_SESSION["gebruiker"]); ?>
-	<script src="js/jquery-3.1.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-</body>
-</html>

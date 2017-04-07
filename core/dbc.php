@@ -1,8 +1,8 @@
 <?php
-	$host = "mysql.hostinger.nl";
-	$username = "u540163247_admin";
-	$password = "ma-twente1011";
-	$dbname = "u540163247_mat";
+	$host = "localhost";
+	$username = "root";
+	$password = "";
+	$dbname = "ma-twente";
 	$dbc = mysqli_connect($host, $username, $password, $dbname);
 
 	if(mysqli_connect_errno()) {

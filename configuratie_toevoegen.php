@@ -15,6 +15,7 @@
 </head>
 <body>
   <?php
+
   $gebruiker = $_SESSION["gebruiker"];
   $sql = "SELECT * FROM gebruikers WHERE gebruikersnaam = '$gebruiker'";
   $result = $dbc->query($sql);
@@ -81,7 +82,85 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-  <?php //echo($_SESSION["gebruiker"]); ?>
+  <div class="container">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Configuratie Toevoegen</h3>
+      </div>
+      <div class="panel-body">
+        <form>
+          <label>PC-Nummer</label>
+          <input type="number" class="form-control">
+          <label>Gebruiker</label>
+          <select class="form-control">
+            <option value="">Gebruikers</option>
+            <?php ?>
+          </select>
+          <label>Aanschafdatum</label>
+          <input type="date" id="datepicker" class="form-control">
+          <label>Soort computer</label>
+          <select class="form-control">
+            <option value=""></option>
+            <option value="desktop">Desktop</option>
+            <option value="laptop">Laptop</option>
+          </select>
+          <label>CPU</label>
+          <select class="form-control">
+            <option value=""></option>
+            <option value="i3">I3</option>
+            <option value="i5">I5</option>
+            <option value="i7">I7</option>
+          </select>
+          <label>Memory</label>
+          <select class="form-control">
+            <option value=""></option>
+            <option value="2gb">2GB</option>
+            <option value="4gb">4GB</option>
+            <option value="6gb">6GB</option>
+            <option value="8gb">8GB</option>
+            <option value="16gb">16GB</option>
+          </select>
+          <label>Harde Schijf</label>
+          <select class="form-control">
+            <option value=""></option>
+            <option value="320gb">320GB HDD</option>
+            <option value="500gb">500GB HDD</option>
+            <option value="640gb">640GB HDD</option>
+            <option value="2tb">2TB HDD</option>
+            <option value="120gb_ssd">120GB SSD</option>
+            <option value="128gb_ssd">128GB SSD</option>
+            <option value="250gb_ssd">250GB SSD</option>
+            <option value="120gb_ssd_640gb">120GB SSD + 640GB HDD</option>
+            <option value="120gb_ssd_1tb">120GB SSD + 1TB HDD</option>
+            <option value="120gb_ssd_2tb">120GB SSD + 2TB HDD</option>
+          </select>
+          <label>OS</label>
+          <select class="form-control">
+            <option value=""></option>
+            <option value="windows10_pro">Windows 10 Pro</option>
+            <option value="mac_osx">Mac OSX</option>
+          </select>
+          <label>GPU</label>
+          <select class="form-control">
+            <option value=""></option>
+            <option value="512mb">512MB</option>
+            <option value="1gb">1GB</option>
+            <option value="2gb">2GB</option>
+            <option value="4gb">4GB</option>
+            <option value="onboard">Onboard</option>
+            <option value="2gb_onboard">2GB Onboard</option>
+          </select>
+          <br>
+          <input type="submit" class="form-control btn btn-primary" value="Configuratie Toevoegen">
+        </form>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function(){
+      $("#datepicker").datepicker();
+    });
+  </script>
 	<script src="js/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 </body>

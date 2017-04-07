@@ -10,7 +10,8 @@
             <h4 class="modal-title" id="myModalLabel">Login</h4>
           </div>
           <div class="well">
-            <form id="loginForm" method="POST">
+
+            <fxorm id="loginForm" method="POST">
               <div class="form-group">
                 <label for="gebruiker" class="control-label">Gebruiker</label>
                 <input type="text" class="form-control" id="gebruiker" name="gebruiker" title="Vul uw gebruikersnaam in">
@@ -19,9 +20,10 @@
                 <label for="wachtwoord" class="control-label">Wachtwoord</label>
                 <input type="password" class="form-control" id="wachtwoord" name="wachtwoord" title="Vul uw wachtwoord in">
               </div>
-              <div id="loginErrorMsg" class="alert alert-error hide"><?php errorCheck(); ?></div>
-              <button type="submit" name="submit" class="btn btn-primary btn-block">Login</button>
+              <div id="loginErrorMsg" class="text-danger"></div>
+              <button onclick = "login()" class="btn btn-primary btn-block">Login</button>
             </form>
+
           </div>
         </div>
         <div class="col-xs-3"></div>

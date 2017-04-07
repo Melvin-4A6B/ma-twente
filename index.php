@@ -37,5 +37,21 @@
   </div>
   <script src="js/jquery-3.1.1.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+
+  <script>
+    function login() {
+      var login = $("#gebruiker").val();
+      var pass = $("#wachtwoord").val();
+      var post = $.post("core/dologin.php", {gebruiker: login, wachtwoord: pass});
+      post.done(function(data) {
+          var dt = data;
+          if(dt == "U bent nu ingelogt") {
+            window.location.href = "home.php";
+            return;
+          }
+          $("#loginErrorMsg").text(dt);
+      });
+    }
+  </script>
 </body>
 </html>
