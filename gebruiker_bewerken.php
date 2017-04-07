@@ -108,7 +108,7 @@
           }
           echo "</select>
           <br>
-          <input type='submit' class='form-control btn btn-primary' value='Toon Gegevens'>";
+          <input type='submit' class='form-control btn btn-primary' value='Toon Gegevens'></form";
           ?>
           <br>
           <?php
@@ -173,7 +173,6 @@
     $telefoon = $_POST["telefoon"];
     $privilege = $_POST["privilege"];
     $sql = "UPDATE gebruikers SET geslacht = '$geslacht', voorletter = '$voorletter', achternaam = '$achternaam', gebruikersnaam = '$gebruikersnaam', afdeling = '$afdeling', intern_telefoon_nummer = '$telefoon', privilege = '$privilege'";  
-    echo($sql);
-    //$dbc->query($sql);  //uitcommenten als alles werkt zodat data word neergezet in database
+    $dbc->query($sql);
   }
 ?>

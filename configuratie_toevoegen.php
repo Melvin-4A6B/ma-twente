@@ -1,17 +1,17 @@
 <?php
   session_start();
-	include ("core/dbc.php");
+  include ("core/dbc.php");
 ?>
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>MA-Twente</title>
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/font-awesome.min.css" rel="stylesheet">
-	<link href="css/custom.css" rel="stylesheet">
+  <title>MA-Twente</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/custom.css" rel="stylesheet">
 </head>
 <body>
   <?php
@@ -81,77 +81,86 @@
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
-</nav>
+</nav> 
+  
   <div class="container">
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title">Configuratie Toevoegen</h3>
       </div>
       <div class="panel-body">
-        <form>
-          <label>PC-Nummer</label>
-          <input type="number" class="form-control">
+        
+        <form method="post" action="">
           <label>Gebruiker</label>
-          <select class="form-control">
-            <option value="">Gebruikers</option>
-            <?php ?>
-          </select>
+          <?php
+          $sql = "SELECT * FROM gebruikers";
+          $result = $dbc->query($sql);
+
+          echo "<select name='gebruikersnaam' class='form-control' style='overflow: auto;'>";
+          echo "<option value=''></option>";
+      while($row = mysqli_fetch_assoc($result)) {
+            echo "<option value='".$row['id']."' class='form-control'>".$row['gebruikersnaam']."</option>";
+          }
+          echo "</select>";
+          ?>
+          
+      
           <label>Aanschafdatum</label>
-          <input type="date" id="datepicker" class="form-control">
+          <input type="date" id="datepicker" class="form-control" name="aanschafdatum">
           <label>Soort computer</label>
-          <select class="form-control">
+          <select class="form-control" name="soortComputer">
             <option value=""></option>
-            <option value="desktop">Desktop</option>
-            <option value="laptop">Laptop</option>
+            <option value="1">Desktop</option>
+            <option value="2">Laptop</option>
           </select>
           <label>CPU</label>
-          <select class="form-control">
+          <select class="form-control" name="cpu">
             <option value=""></option>
-            <option value="i3">I3</option>
-            <option value="i5">I5</option>
-            <option value="i7">I7</option>
+            <option value="1">I3</option>
+            <option value="2">I5</option>
+            <option value="3">I7</option>
           </select>
           <label>Memory</label>
-          <select class="form-control">
+          <select class="form-control" name="memory">
             <option value=""></option>
-            <option value="2gb">2GB</option>
-            <option value="4gb">4GB</option>
-            <option value="6gb">6GB</option>
-            <option value="8gb">8GB</option>
-            <option value="16gb">16GB</option>
+            <option value="1">2GB</option>
+            <option value="2">4GB</option>
+            <option value="3">6GB</option>
+            <option value="4">8GB</option>
+            <option value="5">16GB</option>
           </select>
           <label>Harde Schijf</label>
-          <select class="form-control">
+          <select class="form-control" name="hardeSchijf">
             <option value=""></option>
-            <option value="320gb">320GB HDD</option>
-            <option value="500gb">500GB HDD</option>
-            <option value="640gb">640GB HDD</option>
-            <option value="2tb">2TB HDD</option>
-            <option value="120gb_ssd">120GB SSD</option>
-            <option value="128gb_ssd">128GB SSD</option>
-            <option value="250gb_ssd">250GB SSD</option>
-            <option value="120gb_ssd_640gb">120GB SSD + 640GB HDD</option>
-            <option value="120gb_ssd_1tb">120GB SSD + 1TB HDD</option>
-            <option value="120gb_ssd_2tb">120GB SSD + 2TB HDD</option>
+            <option value="1">320GB HDD</option>
+            <option value="2">500GB HDD</option>
+            <option value="3">640GB HDD</option>
+            <option value="4">2TB HDD</option>
+            <option value="5">120GB SSD</option>
+            <option value="6">128GB SSD</option>
+            <option value="7">250GB SSD</option>
+            <option value="8">120GB SSD + 640GB HDD</option>
+            <option value="9">120GB SSD + 1TB HDD</option>
+            <option value="10">120GB SSD + 2TB HDD</option>
           </select>
           <label>OS</label>
-          <select class="form-control">
+          <select class="form-control" name="os">
             <option value=""></option>
-            <option value="windows10_pro">Windows 10 Pro</option>
-            <option value="mac_osx">Mac OSX</option>
+            <option value="1">Windows 10 Pro</option>
+            <option value="2">Mac OSX</option>
           </select>
           <label>GPU</label>
-          <select class="form-control">
+          <select class="form-control" name="gpu">
             <option value=""></option>
-            <option value="512mb">512MB</option>
-            <option value="1gb">1GB</option>
-            <option value="2gb">2GB</option>
-            <option value="4gb">4GB</option>
-            <option value="onboard">Onboard</option>
-            <option value="2gb_onboard">2GB Onboard</option>
+            <option value="1">512MB</option>
+            <option value="2">1GB</option>
+            <option value="3">2GB</option>
+            <option value="4">4GB</option>
+            <option value="5">Onboard</option>
+            <option value="6">2GB Onboard</option>
           </select>
           <br>
-          <input type="submit" class="form-control btn btn-primary" value="Configuratie Toevoegen">
+          <input type="submit" class="form-control btn btn-primary" name="submit" value="Configuratie Toevoegen" >
         </form>
       </div>
     </div>
@@ -161,7 +170,40 @@
       $("#datepicker").datepicker();
     });
   </script>
-	<script src="js/jquery-3.1.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery-3.1.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
+<?php
+  if(isset($_POST["submit"])) {
+    
+    if(empty($_POST["aanschafdatum"]) |
+     empty($_POST["soortComputer"]) |
+     empty($_POST["cpu"]) |
+     empty($_POST["memory"]) |
+     empty($_POST["hardeSchijf"]) |
+     empty($_POST["os"]) |
+     empty($_POST["gpu"])) {
+      echo("Vul alle velden in");  
+      exit();
+    } else {
+      $gebruiker = $_POST["gebruikersnaam"];
+      $aanschafdatum = $_POST["aanschafdatum"];
+      $soortComputer = $_POST["soortComputer"];
+      $cpu = $_POST["cpu"];
+      $memory = $_POST["memory"];
+      $hardeSchijf = $_POST["hardeSchijf"];
+      $os = $_POST["os"];
+      $gpu = $_POST["gpu"];
+      $sql = "INSERT INTO configuratie
+              (gebruiker, aanschaf_datum, computer_soort, cpu, memory, hdd, os, video_kaart) 
+              VALUES('$gebruiker', '$aanschafdatum', '$soortComputer', '$cpu', '$memory', '$hardeSchijf', '$os', '$gpu')";
+      $result = $dbc->query($sql);
+      if($result) {
+        echo "Configuratie met succes in de database toegevoegd";
+      } else {
+        echo "Fout";
+      }
+    }
+  }
+?>

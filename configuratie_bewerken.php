@@ -88,73 +88,272 @@
         <h3 class="panel-title">Configuratie Wijzigen</h3>
       </div>
       <div class="panel-body">
-        <form>
-          <label><h2>Selecteer Gebruiker</h2></label>
-          <select class="form-control">
-            <option value="v.cambell">v.campbell</option>
-            <?php ?>
-          </select>
+        
+        <label><h2>Selecteer PC-Nummer</h2></label>
+          <?php
+          $sql = "SELECT * FROM configuratie";
+          $result = $dbc->query($sql);
+
+          echo "<form method='post' action=''>
+          <select name='configuratie' class='form-control' style='overflow: auto;'>";
+          while($row = mysqli_fetch_assoc($result)) {
+            echo "<option value='".$row['pc_nummer']."' class='form-control'>".$row['pc_nummer']."</option>";
+            $gebruiker = $_POST["configuratie"];
+          }
+          echo "</select>
           <br>
+          <input type='submit' class='form-control btn btn-primary' value='Toon Gegevens'></form";
+          ?>
+          <br>
+          <?php
+          if($_SERVER["REQUEST_METHOD"] == "POST") {
+            if(isset($_POST["configuratie"]) && !empty($_POST["configuratie"])) {
+              $sql = "SELECT * FROM configuratie WHERE pc_nummer = '".$gebruiker."'";
+              $result = $dbc->query($sql);
+              $row = mysqli_fetch_assoc($result);
+            }
+          ?>
+          <form method="post" action="">
           <hr>
           <label><h2>Wijzig Configuratie</h2></label>
           <br>
-          <label>PC-Nummer</label>
-          <input type="number" class="form-control">
+          
+          <label>Aanschafdatum</label>
+          <input type="date" id="datepicker" class="form-control" name="aanschafdatum" value="<?php echo $row['aanschaf_datum']; ?>">
           <label>Soort computer</label>
-          <select class="form-control">
-            <option value=""></option>
-            <option value="desktop">Desktop</option>
-            <option value="laptop">Laptop</option>
-          </select>
+          <select class="form-control" name="soortComputer">
+            <?php if($row["computer_soort"] == 1) { ?>
+            <option value="1" selected="selected">Desktop</option>
+            <option value="2">Laptop</option>
+            <?php } else { ?>
+            <option value="2" selected="selected">Laptop</option>  
+            <option value="1">Desktop</option>
+            <?php } ?>
+          </select> 
           <label>CPU</label>
-          <select class="form-control">
-            <option value=""></option>
-            <option value="i3">I3</option>
-            <option value="i5">I5</option>
-            <option value="i7">I7</option>
+          <select class="form-control" name="cpu">
+            <?php if($row["cpu"] == 1) { ?>
+            <option value="1" selected="selected">I3</option>
+            <option value="2">I5</option>
+            <option value="3">I7</option>
+            <?php } else if($row["cpu"] == 2) { ?>
+            <option value="1">I3</option>
+            <option value="2" selected="selected">I5</option>
+            <option value="3">I7</option>
+            <?php } else { ?>
+            <option value="1">I3</option>
+            <option value="2">I5</option>
+            <option value="3" selected="selected">I7</option>
+            <?php } ?>
           </select>
           <label>Memory</label>
-          <select class="form-control">
-            <option value=""></option>
-            <option value="2gb">2GB</option>
-            <option value="4gb">4GB</option>
-            <option value="6gb">6GB</option>
-            <option value="8gb">8GB</option>
-            <option value="16gb">16GB</option>
+          <select class="form-control" name="memory">
+            <?php if($row["memory"] == 1) { ?>
+            <option value="1" selected="selected">2GB</option>
+            <option value="2">4GB</option>
+            <option value="3">6GB</option>
+            <option value="4">8GB</option>
+            <option value="5">16GB</option>
+            <?php } else if($row["cpu"] == 2) { ?>
+            <option value="1">2GB</option>
+            <option value="2" selected="selected">4GB</option>
+            <option value="3">6GB</option>
+            <option value="4">8GB</option>
+            <option value="5">16GB</option>
+            <?php } else if($row["cpu"] == 3) { ?>
+            <option value="1">2GB</option>
+            <option value="2">4GB</option>
+            <option value="3" selected="selected">6GB</option>
+            <option value="4">8GB</option>
+            <option value="5">16GB</option>
+            <?php } else if($row["cpu"] == 4) { ?>
+            <option value="1">2GB</option>
+            <option value="2">4GB</option>
+            <option value="3">6GB</option>
+            <option value="4" selected="selected">8GB</option>
+            <option value="5">16GB</option>
+            <?php } else { ?>
+            <option value="1">2GB</option>
+            <option value="2">4GB</option>
+            <option value="3">6GB</option>
+            <option value="4">8GB</option>
+            <option value="5" selected="selected">16GB</option>
+            <?php } ?>
           </select>
           <label>Harde Schijf</label>
-          <select class="form-control">
-            <option value=""></option>
-            <option value="320gb">320GB HDD</option>
-            <option value="500gb">500GB HDD</option>
-            <option value="640gb">640GB HDD</option>
-            <option value="2tb">2TB HDD</option>
-            <option value="120gb_ssd">120GB SSD</option>
-            <option value="128gb_ssd">128GB SSD</option>
-            <option value="250gb_ssd">250GB SSD</option>
-            <option value="120gb_ssd_640gb">120GB SSD + 640GB HDD</option>
-            <option value="120gb_ssd_1tb">120GB SSD + 1TB HDD</option>
-            <option value="120gb_ssd_2tb">120GB SSD + 2TB HDD</option>
+          <select class="form-control" name="hardeSchijf">
+            <?php if($row["hdd"] == 1) { ?>
+            <option value="1" selected="selected">320GB HDD</option>
+            <option value="2">500GB HDD</option>
+            <option value="3">640GB HDD</option>
+            <option value="4">2TB HDD</option>
+            <option value="5">120GB SSD</option>
+            <option value="6">128GB SSD</option>
+            <option value="7">250GB SSD</option>
+            <option value="8">120GB SSD + 640GB HDD</option>
+            <option value="9">120GB SSD + 1TB HDD</option>
+            <option value="10">120GB SSD + 2TB HDD</option>
+            <?php } else if($row["hdd"] == 2) { ?>
+            <option value="1">320GB HDD</option>
+            <option value="2" selected="selected">500GB HDD</option>
+            <option value="3">640GB HDD</option>
+            <option value="4">2TB HDD</option>
+            <option value="5">120GB SSD</option>
+            <option value="6">128GB SSD</option>
+            <option value="7">250GB SSD</option>
+            <option value="8">120GB SSD + 640GB HDD</option>
+            <option value="9">120GB SSD + 1TB HDD</option>
+            <option value="10">120GB SSD + 2TB HDD</option>
+            <?php } else if($row["hdd"] == 3) { ?>
+            <option value="1">320GB HDD</option>
+            <option value="2">500GB HDD</option>
+            <option value="3" selected="selected">640GB HDD</option>
+            <option value="4">2TB HDD</option>
+            <option value="5">120GB SSD</option>
+            <option value="6">128GB SSD</option>
+            <option value="7">250GB SSD</option>
+            <option value="8">120GB SSD + 640GB HDD</option>
+            <option value="9">120GB SSD + 1TB HDD</option>
+            <option value="10">120GB SSD + 2TB HDD</option>
+            <?php } else if($row["hdd"] == 4) { ?>
+            <option value="1">320GB HDD</option>
+            <option value="2">500GB HDD</option>
+            <option value="3">640GB HDD</option>
+            <option value="4" selected="selected">2TB HDD</option>
+            <option value="5">120GB SSD</option>
+            <option value="6">128GB SSD</option>
+            <option value="7">250GB SSD</option>
+            <option value="8">120GB SSD + 640GB HDD</option>
+            <option value="9">120GB SSD + 1TB HDD</option>
+            <option value="10">120GB SSD + 2TB HDD</option>
+            <?php } else if($row["hdd"] == 5) { ?>
+            <option value="1">320GB HDD</option>
+            <option value="2">500GB HDD</option>
+            <option value="3">640GB HDD</option>
+            <option value="4">2TB HDD</option>
+            <option value="5" selected="selected">120GB SSD</option>
+            <option value="6">128GB SSD</option>
+            <option value="7">250GB SSD</option>
+            <option value="8">120GB SSD + 640GB HDD</option>
+            <option value="9">120GB SSD + 1TB HDD</option>
+            <option value="10">120GB SSD + 2TB HDD</option>
+            <?php } else if($row["hdd"] == 6) { ?>
+            <option value="1">320GB HDD</option>
+            <option value="2">500GB HDD</option>
+            <option value="3">640GB HDD</option>
+            <option value="4">2TB HDD</option>
+            <option value="5">120GB SSD</option>
+            <option value="6" selected="selected">128GB SSD</option>
+            <option value="7">250GB SSD</option>
+            <option value="8">120GB SSD + 640GB HDD</option>
+            <option value="9">120GB SSD + 1TB HDD</option>
+            <option value="10">120GB SSD + 2TB HDD</option>
+            <?php } else if($row["hdd"] == 7) { ?>
+            <option value="1">320GB HDD</option>
+            <option value="2">500GB HDD</option>
+            <option value="3">640GB HDD</option>
+            <option value="4">2TB HDD</option>
+            <option value="5">120GB SSD</option>
+            <option value="6">128GB SSD</option>
+            <option value="7" selected="selected">250GB SSD</option>
+            <option value="8">120GB SSD + 640GB HDD</option>
+            <option value="9">120GB SSD + 1TB HDD</option>
+            <option value="10">120GB SSD + 2TB HDD</option>
+            <?php } else if($row["hdd"] == 8) { ?>
+            <option value="1">320GB HDD</option>
+            <option value="2">500GB HDD</option>
+            <option value="3">640GB HDD</option>
+            <option value="4">2TB HDD</option>
+            <option value="5">120GB SSD</option>
+            <option value="6">128GB SSD</option>
+            <option value="7">250GB SSD</option>
+            <option value="8" selected="selected">120GB SSD + 640GB HDD</option>
+            <option value="9">120GB SSD + 1TB HDD</option>
+            <option value="10">120GB SSD + 2TB HDD</option>
+            <?php } else if($row["hdd"] == 9) { ?>
+            <option value="1">320GB HDD</option>
+            <option value="2">500GB HDD</option>
+            <option value="3">640GB HDD</option>
+            <option value="4">2TB HDD</option>
+            <option value="5">120GB SSD</option>
+            <option value="6">128GB SSD</option>
+            <option value="7">250GB SSD</option>
+            <option value="8">120GB SSD + 640GB HDD</option>
+            <option value="9" selected="selected">120GB SSD + 1TB HDD</option>
+            <option value="10">120GB SSD + 2TB HDD</option>
+            <?php } else { ?>
+            <option value="1">320GB HDD</option>
+            <option value="2">500GB HDD</option>
+            <option value="3">640GB HDD</option>
+            <option value="4">2TB HDD</option>
+            <option value="5">120GB SSD</option>
+            <option value="6">128GB SSD</option>
+            <option value="7">250GB SSD</option>
+            <option value="8">120GB SSD + 640GB HDD</option>
+            <option value="9">120GB SSD + 1TB HDD</option>
+            <option value="10" selected="selected">120GB SSD + 2TB HDD</option>
+            <?php } ?>
           </select>
           <label>OS</label>
-          <select class="form-control">
-            <option value=""></option>
-            <option value="windows10_pro">Windows 10 Pro</option>
-            <option value="mac_osx">Mac OSX</option>
+          <select class="form-control" name="os">
+            <?php if($row["os"] == 1) { ?>
+            <option value="1" selected="selected">Windows 10 Pro</option>
+            <option value="2">Mac OSX</option>
+            <?php } else { ?>
+            <option value="1">Windows 10 Pro</option>
+            <option value="2" selected="selected">Mac OSX</option>
+            <?php } ?>
           </select>
           <label>GPU</label>
-          <select class="form-control">
-            <option value=""></option>
-            <option value="512mb">512MB</option>
-            <option value="1gb">1GB</option>
-            <option value="2gb">2GB</option>
-            <option value="4gb">4GB</option>
-            <option value="onboard">Onboard</option>
-            <option value="2gb_onboard">2GB Onboard</option>
+          <select class="form-control" name="gpu">
+            <?php if($row["video_kaart"] == 1) { ?>
+            <option value="1" selected="selected">512MB</option>
+            <option value="2">1GB</option>
+            <option value="3">2GB</option>
+            <option value="4">4GB</option>
+            <option value="5">Onboard</option>
+            <option value="6">2GB Onboard</option>
+            <?php } else if($row["video_kaart"] == 2) { ?>
+            <option value="1">512MB</option>
+            <option value="2" selected="selected">1GB</option>
+            <option value="3">2GB</option>
+            <option value="4">4GB</option>
+            <option value="5">Onboard</option>
+            <option value="6">2GB Onboard</option>
+            <?php } else if($row["video_kaart"] == 3) { ?>
+            <option value="1">512MB</option>
+            <option value="2">1GB</option>
+            <option value="3" selected="selected">2GB</option>
+            <option value="4">4GB</option>
+            <option value="5">Onboard</option>
+            <option value="6">2GB Onboard</option>
+            <?php } else if($row["video_kaart"] == 4) { ?>
+            <option value="1">512MB</option>
+            <option value="2">1GB</option>
+            <option value="3">2GB</option>
+            <option value="4" selected="selected">4GB</option>
+            <option value="5">Onboard</option>
+            <option value="6">2GB Onboard</option>
+            <?php } else if($row["video_kaart"] == 5) { ?>
+            <option value="1">512MB</option>
+            <option value="2">1GB</option>
+            <option value="3">2GB</option>
+            <option value="4">4GB</option>
+            <option value="5" selected="selected">Onboard</option>
+            <option value="6">2GB Onboard</option>
+            <?php } else { ?>
+            <option value="1">512MB</option>
+            <option value="2">1GB</option>
+            <option value="3">2GB</option>
+            <option value="4">4GB</option>
+            <option value="5">Onboard</option>
+            <option value="6" selected="selected">2GB Onboard</option>
+            <?php } ?>
           </select>
           <br>
-          <input type="submit" class="form-control btn btn-primary" value="Configuratie Wijzigen">
+          <input type="submit" class="form-control btn btn-primary" name="submit" value="Wijzig Configuratie">
         </form>
+        <?php } ?><!-- Afsluiting POST check -->
       </div>
     </div>
   </div>
@@ -162,3 +361,16 @@
   <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
+<?php
+  if(isset($_POST["submit"])) {
+    $datum = $_POST["aanschafdatum"];
+    $computerSoort = $_POST["soortComputer"];
+    $cpu = $_POST["cpu"];
+    $memory = $_POST["memory"];
+    $hdd = $_POST["hardeSchijf"];
+    $os = $_POST["os"];
+    $gpu = $_POST["gpu"];
+    $sql = "UPDATE configuratie SET gebruiker = '$gebruiker', aanschaf_datum = '$datum', computer_soort = '$computerSoort', cpu = '$cpu', memory = '$memory', hdd = '$hdd', os = '$os', video_kaart = '$gpu'"; 
+    $dbc->query($sql);
+  }
+?>

@@ -1,4 +1,4 @@
-<?php include("login.php"); ?>
+<?php include("dologin.php"); ?>
 <div class="modal fade loginModal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="row">
