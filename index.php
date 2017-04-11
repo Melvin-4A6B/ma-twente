@@ -49,7 +49,7 @@
             window.location.href = "home.php";
             return;
           }
-          $("#loginErrorMsg").text(dt);
+          $("#loginErrorMsg").html(dt);
       });
     }
   </script>

@@ -11,14 +11,14 @@
           </div>
           <div class="well">
 
-            <fxorm id="loginForm" method="POST">
+            <form id="loginForm" method="POST">
               <div class="form-group">
                 <label for="gebruiker" class="control-label">Gebruiker</label>
-                <input type="text" class="form-control" id="gebruiker" name="gebruiker" title="Vul uw gebruikersnaam in">
+                <input type="text" class="form-control" id="gebruiker" name="gebruiker" title="Vul uw gebruikersnaam in" required>
               </div>
               <div class="form-group">
                 <label for="wachtwoord" class="control-label">Wachtwoord</label>
-                <input type="password" class="form-control" id="wachtwoord" name="wachtwoord" title="Vul uw wachtwoord in">
+                <input type="password" class="form-control" id="wachtwoord" name="wachtwoord" title="Vul uw wachtwoord in" required>
               </div>
               <div id="loginErrorMsg" class="text-danger"></div>
               <button onclick = "login()" class="btn btn-primary btn-block">Login</button>

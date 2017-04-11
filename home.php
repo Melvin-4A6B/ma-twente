@@ -1,5 +1,8 @@
 <?php
   session_start();
+  if($_SESSION["gebruiker"] == ""){
+    header("Location: index.php");
+  }
 	include ("core/dbc.php");
 ?>
 <!DOCTYPE html>
@@ -15,15 +18,15 @@
 </head>
 <body>
   <?php
-  $gebruiker = $_SESSION["gebruiker"];
-  $sql = "SELECT * FROM gebruikers WHERE gebruikersnaam = '$gebruiker'";
-  $result = $dbc->query($sql);
-  $row = mysqli_fetch_assoc($result);
-  if($row["privilege"] == 2) {
-    $privilege = 2;   
-  } else {
-    $privilege = 1;
-  }
+    $gebruiker = $_SESSION["gebruiker"];
+    $sql = "SELECT * FROM gebruikers WHERE gebruikersnaam = '$gebruiker'";
+    $result = $dbc->query($sql);
+    $row = mysqli_fetch_assoc($result);
+    if($row["privilege"] == 2) {
+      $privilege = 2;   
+    } else {
+      $privilege = 1;
+    }
 ?>
 <nav class="navbar navbar-default">
   <div class="container">

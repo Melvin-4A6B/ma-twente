@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 07 apr 2017 om 10:40
+-- Gegenereerd op: 10 apr 2017 om 12:55
 -- Serverversie: 10.1.21-MariaDB
 -- PHP-versie: 5.6.30
 
@@ -53,6 +53,15 @@ CREATE TABLE `configuratie` (
   `os` int(11) NOT NULL,
   `video_kaart` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `configuratie`
+--
+
+INSERT INTO `configuratie` (`pc_nummer`, `gebruiker`, `aanschaf_datum`, `computer_soort`, `cpu`, `memory`, `hdd`, `os`, `video_kaart`) VALUES
+(1, '1', '2017-04-21', 2, 1, 3, 5, 2, 2),
+(2, '2', '2017-04-15', 2, 3, 5, 10, 1, 4),
+(3, '2', '2017-04-21', 1, 2, 2, 4, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -137,7 +146,7 @@ ALTER TABLE `afgehandelde_incidenten`
 -- AUTO_INCREMENT voor een tabel `configuratie`
 --
 ALTER TABLE `configuratie`
-  MODIFY `pc_nummer` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `pc_nummer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT voor een tabel `gebruikers`
 --
